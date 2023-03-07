@@ -1,0 +1,95 @@
+---
+title: "ARM_TextMining"
+author: "Sreevani Basvaraj Patil"
+date: "2023-03-05"
+output: html_document
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = TRUE)
+```
+
+```{r}
+#install.packages("tcltk")
+library(tidyverse)
+library(dplyr)
+library(gridExtra)
+library(webr)
+library(repr)
+library(ggplot2)
+library(plotly)
+library(arules)
+library(tokenizers)
+library(stopwords)
+#library(tcltk)
+library(arulesViz) ## load last
+```
+
+```{r}
+tweets_df <- read.csv("/Users/sbp/Downloads/Trans_Twitter.csv")
+
+corpus <- tweets_df$ctweet
+```
+```{r}
+#read the data
+TransactionTweetsFile <- "/Users/sbp/Downloads/TransData_Twitter.csv"
+trans <- file(TransactionTweetsFile)
+
+tokens <- tokenizers::tokenize_words(corpus[1], stopwords = stopwords::stopwords("en"), lowercase = TRUE, strip_punct = TRUE, strip_numeric = TRUE, simplify = TRUE)
+cat(unlist(str_squish(tokens)), "\n", file = trans, sep = ",")
+close(trans)
+
+```
+```{r}
+trans <- file(TransactionTweetsFile, open = "a")
+for(i in 2:nrow(tweets_df)){
+  tokens <- tokenizers::tokenize_words(tweets_df$ctweet[i], stopwords = stopwords::stopwords("en"), lowercase = TRUE, strip_punct = TRUE, strip_numeric = TRUE, simplify = TRUE)
+  cat(unlist(str_squish(tokens)), "\n", file = trans, sep = ",")
+}
+close(trans)
+```
+
+```{r}
+TweetTrans <- read.transactions(TransactionTweetsFile,
+                                rm.duplicates = FALSE,
+                                format = "basket",
+                                sep = ",")
+inspect(head(TweetTrans))
+sample_trans <- sample(TweetTrans, 50)
+summary(sample_trans)
+```
+
+```{r}
+TweetDf <- read.transactions(TransactionTweetsFile, header = FALSE, sep = ",")
+inspect(TweetDf)
+```
+
+```{r}
+TweetTrans_rules <- arules::apriori(TweetDf,
+                                    parameter = list(support = 0.0001, confidence = 0.0001, minlen = 2, maxlen = 6))
+
+inspect(TweetTrans_rules[1:30])
+```
+```{r}
+SortedRules_sup <- sort(TweetTrans_rules, by = "support", decreasing = TRUE)
+inspect(SortedRules_sup[1:20])
+```
+
+```{r}
+plot(SortedRules_sup[1:100],method = "graph")
+```
+```{r}
+plot(SortedRules_sup[1:50], measure = "confidence")
+
+```
+```{r}
+
+plot(SortedRules_sup[1:15], method="graph")
+```
+```{r}
+plot(SortedRules_sup[1:30], method="paracoord")
+```
+
+```{r}
+plot(SortedRules_sup, method = "grouped", control = list(k = 2))
+```

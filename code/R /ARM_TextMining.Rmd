@@ -26,14 +26,14 @@ library(arulesViz) ## load last
 ```
 
 ```{r}
-tweets_df <- read.csv("/Users/sbp/Downloads/Trans_Twitter.csv")
+df <- read.csv("/Users/sbp/Downloads/NewHeadlinesV2.csv")
 
-corpus <- tweets_df$ctweet
+corpus <- df$Headline
 ```
 ```{r}
 #read the data
-TransactionTweetsFile <- "/Users/sbp/Downloads/TransData_Twitter.csv"
-trans <- file(TransactionTweetsFile)
+tf <- "/Users/sbp/Downloads/testtransvv2.csv"
+trans <- file(tf)
 
 tokens <- tokenizers::tokenize_words(corpus[1], stopwords = stopwords::stopwords("en"), lowercase = TRUE, strip_punct = TRUE, strip_numeric = TRUE, simplify = TRUE)
 cat(unlist(str_squish(tokens)), "\n", file = trans, sep = ",")
@@ -41,16 +41,16 @@ close(trans)
 
 ```
 ```{r}
-trans <- file(TransactionTweetsFile, open = "a")
-for(i in 2:nrow(tweets_df)){
-  tokens <- tokenizers::tokenize_words(tweets_df$ctweet[i], stopwords = stopwords::stopwords("en"), lowercase = TRUE, strip_punct = TRUE, strip_numeric = TRUE, simplify = TRUE)
+trans <- file(tf, open = "a")
+for(i in 2:nrow(df)){
+  tokens <- tokenizers::tokenize_words(df$Headline[i], stopwords = stopwords::stopwords("en"), lowercase = TRUE, strip_punct = TRUE, strip_numeric = TRUE, simplify = TRUE)
   cat(unlist(str_squish(tokens)), "\n", file = trans, sep = ",")
 }
 close(trans)
 ```
 
 ```{r}
-TweetTrans <- read.transactions(TransactionTweetsFile,
+TweetTrans <- read.transactions(tf,
                                 rm.duplicates = FALSE,
                                 format = "basket",
                                 sep = ",")
@@ -60,23 +60,26 @@ summary(sample_trans)
 ```
 
 ```{r}
-TweetDf <- read.transactions(TransactionTweetsFile, header = FALSE, sep = ",")
+TweetDf <- read.transactions(tf, header = FALSE, sep = ",")
 inspect(TweetDf)
 ```
 
 ```{r}
 TweetTrans_rules <- arules::apriori(TweetDf,
-                                    parameter = list(support = 0.0001, confidence = 0.0001, minlen = 2, maxlen = 6))
+                                    parameter = list(support = 0.03, confidence = 0.1))
 
-inspect(TweetTrans_rules[1:30])
+inspect(TweetTrans_rules)
 ```
 ```{r}
-SortedRules_sup <- sort(TweetTrans_rules, by = "support", decreasing = TRUE)
-inspect(SortedRules_sup[1:20])
+SortedRules_sup <- sort(TweetTrans_rules, by = "lift", decreasing = TRUE)
+inspect(SortedRules_sup)
+```
+```{r}
+rules_conf <- sort (TweetTrans_rules, by="lift", decreasing=TRUE) # 'high-confidence' rules.
 ```
 
 ```{r}
-plot(SortedRules_sup[1:100],method = "graph")
+plot(SortedRules_sup,method = "graph")
 ```
 ```{r}
 plot(SortedRules_sup[1:50], measure = "confidence")
@@ -91,5 +94,4 @@ plot(SortedRules_sup[1:30], method="paracoord")
 ```
 
 ```{r}
-plot(SortedRules_sup, method = "grouped", control = list(k = 2))
 ```

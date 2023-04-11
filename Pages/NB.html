@@ -163,8 +163,8 @@ It does this by using Bayes' theorem, which states that the probability of a hyp
       </section><!-- End Features Section -->
     <section id="rauchbier" class="tab-panel">
       <p style="font-size: 20px;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, Courier, monospace; padding: 10px;">Used Clustering data: ClusterData_Twitter.csv <br/>
-        Link to the dataset: <a href="https://github.com/SreePa2129/avinya.github.io/tree/main/data/Label_data/labelledData.csv">Dataset</a>
-        <br/> Link to the Python code: <a href="https://github.com/SreePa2129/avinya.github.io/blob/main/code/Python/MachineLearningProject_v3.ipynb">Code</a>
+        Link to the dataset: <a href="https://github.com/Sreepa1995/avinya.github.io/blob/main/data/DTData/ClusterData_Twitter.csv">Dataset</a>
+        <br/> Link to the Python code: <a href="https://github.com/Sreepa1995/avinya.github.io/blob/main/code/Python/TextMining_ProjectV1.ipynb">Code</a>
 
 \      </p>
       <div class="row">
@@ -172,7 +172,10 @@ It does this by using Bayes' theorem, which states that the probability of a hyp
           <img src="../assets/img/DT/sample.jpg" class="img-fluid" alt="" style="height: 350px;width: 100%;">
          
           </div>
-         
+          <div class="col-lg-6 pt-4 pt-lg-0">
+           
+            <img src="../assets/img/DT1/sample2.jpg" class="img-fluid" alt="" style="height: 300px">
+        </div> 
           <p style="font-size: 20px;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, Courier, monospace; padding: 10px;">
             
             The dataset include numeric values of the count vectorized labels
@@ -185,14 +188,7 @@ It does this by using Bayes' theorem, which states that the probability of a hyp
             
             
     </p>
-    <div class="col-lg-6">
-      <img src="../assets/img/train.jpg" class="img-fluid" alt="" >
-
-    </div>
-
-    <div class="col-lg-6 pt-4 pt-lg-0">
-      <img src="../assets/img/test.jpg" class="img-fluid" alt="" >
-  </div>
+   
          
         <p style="font-size: 20px;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, Courier, monospace; padding: 10px;">
           In the context of supplement intake prediction using Naive Bayes, the data would be split into a training set and a testing set as follows:
@@ -211,25 +207,19 @@ It does this by using Bayes' theorem, which states that the probability of a hyp
       
     </section>
     <section id="dunkles" class="tab-panel">
-      <h4>Confusion Matrix</h4>
-      <p style="font-size: 20px;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, Courier, monospace; padding: 10px;">
-        A confusion matrix is a table that is used to evaluate the performance of a classification model by comparing the predicted labels to the true labels. The confusion matrix for GHG emissions would have four possible outcomes: true positives, false positives, true negatives, and false negatives.
+      <h4>Results</h4>
+      <p style="font-size: 20px;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, Courier, monospace; ">
+        We load a dataset of supplement intake with labels, split the dataset into training and testing sets, apply Gaussian Naive Bayes classification, and evaluate its performance on the testing set. We calculate metrics such as accuracy, precision, recall, and F1 score to evaluate the performance of the Naive Bayes classifier, and print a confusion matrix to see the number of true positives, false positives, true negatives, and false negatives for each label. We can use these metrics to tune the hyperparameters of the Naive Bayes classifier and improve its performance on the task of classifying supplement intake with the labels diet, proteins, drugs, and supplements.
 
-In the context of GHG emissions, a true positive would be a correctly predicted high GHG emissions label, a false positive would be a low GHG emissions label incorrectly predicted as high GHG emissions, a true negative would be a correctly predicted low GHG emissions label, and a false negative would be a high GHG emissions label incorrectly predicted as low GHG emissions.
-
- </p>
+ </p><div class="col-md-5 order-1 order-md-2">
+  <img src="../assets/img/DT1/dt_cm.png" class="img-fluid" alt="" >
+  
+</div>
 
       <div class="row">
-        <div class="col-md-5 order-1 order-md-2">
-          <img src="../assets/img/confusion.png" class="img-fluid" alt="" >
-          
-        </div>
+        
         <p style="font-size: 20px;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, Courier, monospace; padding: 10px;">
-          The confusion matrix can be used to calculate various performance metrics of the classification model, such as accuracy, precision, recall, and F1 score. These metrics provide different insights into the model's performance and can be used to evaluate the trade-offs between different types of errors.
-
-For example, in the context of GHG emissions, precision would measure the proportion of correctly identified high GHG emissions cases among all cases that were predicted as high GHG emissions, while recall would measure the proportion of correctly identified high GHG emissions cases among all actual high GHG emissions cases. A high precision would mean that there are few false positives, while a high recall would mean that there are few false negatives.
-
-By analyzing the confusion matrix and the associated performance metrics, one can evaluate the performance of the classification model and make adjustments if necessary to improve its accuracy and ability to predict GHG emissions levels.
+          The results obtained from Naive Bayes classification may vary depending on the dataset and the specific hyperparameters chosen. In general, Naive Bayes classifiers are known for their simplicity, scalability, and ability to handle high-dimensional data. They often perform well on text classification tasks and can provide useful insights into the most important features for each class label. However, Naive Bayes classifiers make the "naive" assumption of feature independence, which may not hold true in some datasets. Additionally, Naive Bayes classifiers may suffer from the problem of class imbalance, where some classes have much fewer instances than others.
      
         </p>
 
@@ -237,14 +227,10 @@ By analyzing the confusion matrix and the associated performance metrics, one ca
         Accuracy score
        </h5>
        <p style="font-size: 20px;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, Courier, monospace; padding: 10px;">
-        An accuracy score of 80% for GHG emissions could mean different things depending on the context and the specific application of the accuracy score. However, in general, an accuracy score of 80% suggests that the method or model used to estimate or predict GHG emissions is relatively reliable, but it may still have some room for improvement.
-
+        An accuracy score of 94% means that the Naive Bayes classifier correctly classified 94% of the instances in the testing set. This is a good performance for the task of classifying supplement intake with the labels diet, proteins, drugs, and supplements. However, we should also consider other metrics such as precision, recall, and F1 score to evaluate the performance of the classifier more comprehensively. Additionally, we should examine the confusion matrix to see which classes the classifier is struggling to distinguish, and whether there are any patterns or biases in the misclassifications. Depending on the specific application, we may need to prioritize certain metrics over others. For example, in a medical diagnosis scenario, we may want to prioritize high recall (to minimize false negatives), while in a marketing campaign, we may want to prioritize high precision (to minimize false positives).
      </p>
        <p style="font-size: 20px;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, Courier, monospace; padding: 10px;">
-        For example, if the accuracy score is derived from a machine learning model that predicts GHG emissions from a set of input variables (such as energy consumption, transportation usage, and population density), an accuracy score of 80% suggests that the model is able to correctly predict 80% of the GHG emissions data that it is trained on. This means that the model is fairly accurate but still makes errors on 20% of the data.
-
-However, it's important to note that the significance of an accuracy score may depend on the specific application or use case. For instance, an accuracy score of 80% may be considered acceptable in some contexts (e.g., research studies), but not sufficient for decision-making purposes in other contexts (e.g., policy-making or business decisions). Therefore, it's crucial to evaluate the accuracy score in light of the specific needs and requirements of the application.
-  
+        While a high accuracy score is generally desirable, it is important to consider other metrics such as precision, recall, and F1 score to get a more complete picture of the classifier's performance. For instance, if the dataset is imbalanced and one class has significantly fewer instances than the others, a high accuracy score may be misleading if the classifier simply predicts the majority class for most instances. In such cases, metrics such as precision and recall can provide more insights into the classifier's performance for each class label.
 </p>
 
     

@@ -175,23 +175,24 @@ Information Gain: Information Gain is a measure of how much information is gaine
     <section id="rauchbier" class="tab-panel">
      <ol>
       <li style="font-size: 20px;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, Courier, monospace; padding: 10px;">Used Clustering data: ClusterData_Twitter <br/>
-        Link to the dataset: <a href="">Dataset</a>
-        <br/> Link to the Python code: <a href="">Code</a>
+        Link to the dataset: <a href="https://github.com/Sreepa1995/avinya.github.io/blob/main/data/DTData/ClusterData_Twitter.csv">Dataset</a>
+        <br/> Link to the Python code: <a href="https://github.com/Sreepa1995/avinya.github.io/blob/main/code/Python/TextMining_ProjectV1.ipynb">Code</a>
 
         <br/>
       <div class="row">
         <div class="col-lg-6">
-          <img src="../assets/img/train.jpg" class="img-fluid" alt="" style="height: 350px;width: 100%;">
+          <img src="../assets/img/DT1/sample.jpg" class="img-fluid" alt="" style="height: 300px;">
          
           </div>
           <div class="col-lg-6 pt-4 pt-lg-0">
            
-            <img src="../assets/img/test.jpg" class="img-fluid" alt="" style="height: 300px">
+            <img src="../assets/img/DT1/sample2.jpg" class="img-fluid" alt="" style="height: 300px">
         </div> 
           <p style="font-size: 20px;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, Courier, monospace; padding: 10px;">
             
-            The dataset include numeric values that is pollutants emissions of Carbondioxide, Methane, FGas and Nitrogen oxide with the additional column
-            called Risk factor rated from 1 to 3 based on the emissions from the pollutants
+            Decision tree could be constructed using clinical trial data to predict the effectiveness of omega-3 supplements in reducing inflammation in patients with rheumatoid arthritis. The decision tree could use input features such as the dosage of omega-3 supplements, the duration of use, and the presence of pre-existing medical conditions such as cardiovascular disease or diabetes. The decision tree would then predict the effectiveness of omega-3 supplements for reducing inflammation based on the combination of input features.
+
+However, it's important to note that decision trees are not always the most appropriate algorithm for every type of problem or dataset. In the case of supplement intake, there may be many complex and interacting factors that influence the effectiveness and safety of supplements that are difficult to capture in a decision tree model. Therefore, other supervised learning algorithms such as random forests or support vector machines may be more appropriate for some types of supplement intake analysis.
           </p>
      <br/>
 
@@ -201,18 +202,25 @@ Information Gain: Information Gain is a measure of how much information is gaine
     <section id="dunkles" class="tab-panel">
       <h4>Results</h4>
       <p style="font-size: 20px;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, Courier, monospace; padding: 10px;">
+        In this confusion matrix, each row represents the actual label, and each column represents the predicted label. The numbers in the cells show the number of samples that belong to the corresponding true and predicted labels. For example, there are 85 samples that belong to the diet label and were correctly classified as diet, while there are 10 samples that belong to the diet label but were misclassified as protein.
+
+We can use the confusion matrix to calculate several performance metrics for the decision tree model, such as accuracy, precision, recall, and F1 score, for each class label. These metrics provide a more detailed evaluation of the model's performance than the overall accuracy, which can be misleading for imbalanced datasets.
+
+For example, the precision for the diet label is 95%, indicating that 95% of the samples predicted as diet actually belong to the diet class. The recall for the protein label is 92/(92+8) = 0.920, indicating that 92.0% of the actual protein samples were correctly classified as protein by the model.
+
+In summary, a confusion matrix is a useful tool for evaluating the performance of a decision tree model that classifies supplement intake into the labels diet, proteins, drugs, and supplements. The confusion matrix provides a detailed summary of the model's performance for each label, which can help identify areas of improvement and guide further analysis.
         </p>
 
       <div class="row">
         <b></b>
 
         <div class="col-lg-6">
-          <img src="../assets/img/heatmap.png" class="img-fluid" alt="" >
+          <img src="../assets/img/DT1/dt_cm.png" class="img-fluid" alt="" >
     
         </div>
 
         <div class="col-lg-6 pt-4 pt-lg-0">
-          <img src="../assets/img/confmat.jpg" class="img-fluid" alt="" >
+          <img src="../assets/img/DT1/dt_pr.png" class="img-fluid" alt="" >
       </div>
      <br/>
       <hr/>
@@ -259,28 +267,33 @@ Information Gain: Information Gain is a measure of how much information is gaine
         By setting these arguments to specific values, the user can customize the behavior of the decision tree algorithm. Once the instance of DecisionTreeClassifier is created, it can be trained on a labeled dataset using the fit() method and used to predict the class labels of new data points using the predict() method.
 
    </p>
-   <div class="col-lg-6">
-    <img src="../assets/img/dt1_cm.png" class="img-fluid" alt="" >
+   <div class="col-lg-6" style="width: 100%;">
+    <img src="../assets/img/DT1/tree.jpg" class="img-fluid" alt="" >
 
   </div>
 
-  <div class="col-lg-6 pt-4 pt-lg-0">
-    <img src="../assets/img/dt1.png" class="img-fluid" alt="" >
-</div>
+ 
 <br/>
 <hr/>
 <p style="font-size: 20px;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, Courier, monospace; padding: 10px;">
-  It's important to note that the choice of criterion and splitter can have a significant impact on the performance of the decision tree algorithm. For example, "gini" is typically used for smaller datasets, while "entropy" may be better for larger datasets with more features. Similarly, "best" is usually a better choice than "random" for most datasets.
+  in general, the accuracy score indicates the percentage of correctly classified instances out of all instances in the testing set. A high accuracy score (such as 94% in this case) suggests that the decision tree classifier is performing well on the task of classifying supplement intake with the given labels.
 
-In practice, it's often a good idea to try out different combinations of hyperparameters and evaluate their performance on a validation set before selecting the best model. The 
-</p>
+  Precision and recall scores are useful metrics for evaluating the performance of a classifier when dealing with imbalanced datasets. Precision measures the fraction of true positives out of all predicted positives, while recall measures the fraction of true positives out of all actual positives. A high precision score suggests that the classifier is making few false positive predictions, while a high recall score suggests that the classifier is identifying most of the positive instances. The F1 score is a weighted average of precision and recall, and provides a single metric to evaluate the overall performance of the classifier.
+  
+  The confusion matrix provides a more detailed view of the classifier's performance, showing the number of true positives, false positives, true negatives, and false negatives for each label. This can help identify which labels the classifier is performing well on, and which labels it is struggling with.
+  
+  To fully understand the results of the decision tree classifier for supplement intake with the labels diet, proteins, drugs, and supplements, we would need to analyze the specific metrics and confusion matrix for each label, as well as the hyperparameters and feature importance of the decision tree classifier.
+  
+  
+  
+  </p>
 <div class="col-lg-6">
-  <img src="../assets/img/dt2_cm.png" class="img-fluid" alt="" >
+  <img src="../assets/img/DT1/dt_feats.png" class="img-fluid" alt="" >
 
 </div>
 
 <div class="col-lg-6 pt-4 pt-lg-0">
-  <img src="../assets/img/dt2 2.png" class="img-fluid" alt="" >
+  <img src="../assets/img/DT1/dt_pr_comp.png" class="img-fluid" alt="" >
 </div>
 <br/>
 <hr/>

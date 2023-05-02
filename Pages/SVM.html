@@ -48,14 +48,29 @@
 
       <nav id="navbar" class="navbar">
         <ul>
-          <li><a href="../index.html">Home</a></li>
-          <li><a href="EDA.html">EDA</a></li>
-          <li><a href="Clustering.html">Clustering</a></li>
-          <li><a  href="ARM.html">ARM</a></li>
-          <li><a   href="DT.html">Decision Tree</a></li>
-          <li><a href="NB.html">Naive Bayes</a></li>
-          <li><a class="active " href="SVM.html">SVM</a></li>
+          <li><a  href="../index.html">Home</a></li>
+          <li><a href="./EDA.html">EDA</a></li>
+         
+          <li class="dropdown"><a  href="#"><span>Unsupervised Learning</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="./Clustering.html">Clustering</a></li>
+              <li><a href="./ARM.html">ARM</a></li>
+            </ul>
+          </li>
+          <li class="dropdown"><a class="active"  href="#"><span>Supervised Learning</span> <i class="bi bi-chevron-down"></i></a>
+            <ul>
+              <li><a href="./DT.html">Decision Trees</a></li>
+              
+              <li><a href="./NB.html">Naive Bayes</a></li>
+              <li><a href="./SVM.html">SVM</a></li>
+            </ul>
+          </li>
+          <li><a  href="./LDA.html">LDA</a></li>
 
+          <li><a  href="./NN.html">Neural Networks</a></li>
+          <li><a  href="../conc.html">Conclusion</a></li>
+          
+          
         </ul>
         <i class="bi bi-list mobile-nav-toggle"></i>
       </nav><!-- .navbar -->
@@ -242,17 +257,17 @@
           <img src="../assets/img/cm4.png" class="img-fluid" alt="" >
       </div>
       <p style="font-size: 20px;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, Courier, monospace; padding: 10px;">
-        Accuracy scores for the different categories are:
 
-76% accuracy on supplements
-69% accuracy on drugs
-70% accuracy on protein
-74% accuracy on diet
-These accuracy scores indicate that the model performs well on supplements and diet, but not as well on drugs and protein. However, it's important to note that accuracy scores can be misleading if the dataset is imbalanced, meaning that some classes have significantly more or fewer samples than others. In such cases, other metrics like precision, recall, F1-score, and AUC-ROC may provide a more complete picture of the model's performance.
-   </p>
+        Linear Kernel:The first row shows the true positives (TP), false negatives (FN), and false positives (FP) for the first class. The second row shows the TP, FN, and FP for the second class, and the third row shows the TP, FN, and FP for the third class. Looking at the values in the confusion matrix, we can see that the SVM correctly classified 11 samples from the first class, misclassified 2 as the second class, and none as the third class. For the second class, it correctly classified 714 samples, misclassified 113 as the third class, and none as the first class. For the third class, it correctly classified 1910 samples, misclassified 3 as the second class, and none as the first class. Overall, the model seems to perform well as it correctly classified the majority of the samples in each class. Model accuracy score with linear kernel and C=100.0 : 0.9786
+
+Sigmod Kernel:In this case, the sigmoid kernel does not perform well, as all predictions are being assigned to the majority class. This suggests that the sigmoid kernel may not be appropriate for this dataset. Model accuracy score with sigmoid kernel and C=100.0 : 0.8772
+
+
+      </p>
+      <p style="font-size: 20px;font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif, Courier, monospace; padding: 10px;">
+        Above are the accuracy scores obtained by training SVM models with different kernels and hyperparameters on the same dataset. The accuracy score measures the proportion of correctly classified samples out of the total number of samples in the test set. Here's a brief explanation of each line: "Model accuracy score with default hyperparameters: 0.9571": This refers to the accuracy score obtained by training an SVM model with default hyperparameters, which uses the RBF (Radial Basis Function) kernel. The accuracy is 0.9571, meaning that the model correctly classified 95.71% of the test samples. "Model accuracy score with rbf kernel and C=100.0: 0.9844": This refers to the accuracy score obtained by training an SVM model with the RBF kernel and C=100.0 hyperparameter. The accuracy is 0.9844, meaning that the model correctly classified 98.44% of the test samples. Increasing the value of C allows for more complex models that better fit the training data. "Model accuracy score with linear kernel and C=100.0: 0.9786": This refers to the accuracy score obtained by training an SVM model with the linear kernel and C=100.0 hyperparameter. The accuracy is 0.9786, meaning that the model correctly classified 97.86% of the test samples. The linear kernel is useful when the data can be separated well by a linear boundary. "Model accuracy score with sigmoid kernel and C=100.0: 0.8772": This refers to the accuracy score obtained by training an SVM model with the sigmoid kernel and C=100.0 hyperparameter. The accuracy is 0.8772, meaning that the model correctly classified 87.72% of the test samples. The sigmoid kernel can be useful when the data is not easily separable by a linear or RBF kernel, but in this case it did not perform as well as the other kernels.   </p>
   
 <hr/>
-
 
   
   </section>

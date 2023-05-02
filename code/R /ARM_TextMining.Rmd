@@ -25,16 +25,17 @@ library(stopwords)
 library(arulesViz) ## load last
 ```
 
-```{r}
-df <- read.csv("/Users/sbp/Downloads/NewHeadlinesV2.csv")
 
-corpus <- df$Headline
+```{r}
+df <- read.csv("/Users/sbp/Downloads/cleaned_csv.csv")
+
+corpus <- df$ctext_
+
 ```
 ```{r}
 #read the data
-tf <- "/Users/sbp/Downloads/testtransvv2.csv"
+tf <- "/Users/sbp/Downloads/trans.csv"
 trans <- file(tf)
-
 tokens <- tokenizers::tokenize_words(corpus[1], stopwords = stopwords::stopwords("en"), lowercase = TRUE, strip_punct = TRUE, strip_numeric = TRUE, simplify = TRUE)
 cat(unlist(str_squish(tokens)), "\n", file = trans, sep = ",")
 close(trans)
@@ -43,7 +44,7 @@ close(trans)
 ```{r}
 trans <- file(tf, open = "a")
 for(i in 2:nrow(df)){
-  tokens <- tokenizers::tokenize_words(df$Headline[i], stopwords = stopwords::stopwords("en"), lowercase = TRUE, strip_punct = TRUE, strip_numeric = TRUE, simplify = TRUE)
+  tokens <- tokenizers::tokenize_words(df$ctext[i], stopwords = stopwords::stopwords("en"), lowercase = TRUE, strip_punct = TRUE, strip_numeric = TRUE, simplify = TRUE)
   cat(unlist(str_squish(tokens)), "\n", file = trans, sep = ",")
 }
 close(trans)
@@ -61,14 +62,22 @@ summary(sample_trans)
 
 ```{r}
 TweetDf <- read.transactions(tf, header = FALSE, sep = ",")
-inspect(TweetDf)
+#inspect(TweetDf)
 ```
 
 ```{r}
 TweetTrans_rules <- arules::apriori(TweetDf,
-                                    parameter = list(support = 0.03, confidence = 0.1))
+                                    parameter = list(support = 0.2, confidence = 0.08))
 
 inspect(TweetTrans_rules)
+```
+
+```{r}
+TweetTrans_rules <- arules::apriori(TweetDf,
+                                    parameter = list(support = 0.5, confidence = 0.1),appearance = list (default="lhs",lhs="movie"))
+
+inspect(TweetTrans_rules)
+```
 ```
 ```{r}
 SortedRules_sup <- sort(TweetTrans_rules, by = "lift", decreasing = TRUE)
